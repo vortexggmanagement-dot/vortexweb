@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VORTEX.GG | Premier Gacha & RPG Boosting Agency</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            purple: '#8b5cf6',
+                            neon: '#a855f7',
+                            pink: '#ec4899',
+                            dark: '#0B0914',
+                            card: '#15102A',
+                            border: '#2e2350',
+                            gold: '#f59e0b',
+                            cyan: '#06b6d4'
+                        }
+                    },
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0914;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .neon-glow {
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.6), 0 0 20px rgba(168, 85, 247, 0.4);
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.25);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+        }
+        .neon-border:hover {
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.45);
+            border-color: rgba(168, 85, 247, 0.8);
+        }
+        .cyber-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+        }
+        .gold-glow {
+            box-shadow: 0 0 18px rgba(245, 158, 11, 0.35);
+            border: 1px solid rgba(245, 158, 11, 0.7);
+        }
+        .gold-glow:hover {
+            box-shadow: 0 0 28px rgba(245, 158, 11, 0.55);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0914;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e2350;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+    </style>
+</head>
+<body class="cyber-grid antialiased selection:bg-brand-purple selection:text-white">
+
+    <!-- BOT PROTECTION OVERLAY GATE -->
+    <div id="botProtectionGate" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-dark/95 backdrop-blur-xl">
+        <div class="max-w-md w-full bg-brand-card border border-brand-border p-8 rounded-2xl shadow-2xl text-center relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-32 h-32 bg-brand-purple/10 rounded-full blur-2xl"></div>
+            
+            <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-gradient-to-tr from-brand-purple to-brand-pink flex items-center justify-center text-white text-2xl shadow-lg shadow-brand-purple/50">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h3 class="font-orbitron font-black text-xl text-white mb-2">SECURITY VERIFICATION</h3>
+            <p class="text-xs text-gray-400 mb-6">VORTEX.GG system requires human verification to prevent automated bot scraping and protect client orders.</p>
+
+            <div class="p-4 rounded-xl bg-brand-dark border border-brand-border/80 flex items-center justify-between mb-6 cursor-pointer hover:border-brand-neon transition" onclick="passVerification()">
+                <div class="flex items-center space-x-3">
+                    <div id="checkboxIcon" class="w-6 h-6 rounded-md border-2 border-brand-border flex items-center justify-center bg-brand-card text-brand-neon">
+                        <i class="fa-solid fa-check opacity-0 text-xs" id="checkMark"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-white font-orbitron">I am human (Verify)</span>
+                </div>
+                <div class="text-[10px] text-gray-500 font-mono">Cloudflare Gate</div>
+            </div>
+
+            <button id="verifyBtn" onclick="passVerification()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-purple to-brand-pink text-white font-orbitron font-bold text-xs tracking-wider transition opacity-50 cursor-not-allowed shadow-lg" disabled>
+                ENTER VORTEX.GG
+            </button>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-40 backdrop-blur-md bg-brand-dark/90 border-b border-brand-border/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-brand-purple to-brand-pink flex items-center justify-center font-orbitron font-black text-xl text-white shadow-lg shadow-brand-purple/50">
+                        V
+                    </div>
+                    <div>
+                        <span class="font-orbitron text-2xl font-black tracking-wider text-white">VORTEX<span class="text-brand-neon">.GG</span></span>
+                        <span class="block text-[10px] text-gray-400 uppercase tracking-widest font-semibold -mt-1" data-i18n="nav-sub">Premier Boosting Agency</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#services" class="hover:text-brand-neon transition" data-i18n="nav-services">Services</a>
+                    <a href="#pricing" class="hover:text-brand-neon transition" data-i18n="nav-pricing">Packages</a>
+                    <a href="#tracker" class="hover:text-brand-neon transition" data-i18n="nav-tracker">ID Tracker</a>
+                    <a href="#vouches" class="hover:text-brand-neon transition" data-i18n="nav-vouches">Vouches</a>
+                    <a href="#faq" class="hover:text-brand-neon transition" data-i18n="nav-faq">FAQ</a>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <button id="langToggle" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-lg bg-brand-card border border-brand-border text-xs font-semibold hover:border-brand-purple transition flex items-center space-x-1.5 text-white">
+                        <i class="fa-solid fa-globe text-brand-neon"></i>
+                        <span id="langLabel">EN</span>
+                    </button>
+
+                    <a href="https://discord.gg/evskF8r88" target="_blank" class="hidden sm:flex items-center space-x-2 bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-2 rounded-lg font-semibold text-xs transition shadow-lg shadow-[#5865F2]/30">
+                        <i class="fa-brands fa-discord text-base"></i>
+                        <span data-i18n="join-discord">Join Discord</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-12 pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-brand-purple/10 border border-brand-purple/30 text-brand-neon text-xs font-semibold mb-6">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span data-i18n="hero-badge">Verified Pro Pilots & Escrow Protection Active</span>
+            </div>
+
+            <h1 class="font-orbitron text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
+                DOMINATE YOUR GACHA <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-neon via-brand-pink to-brand-purple neon-glow" data-i18n="hero-title">
+                    EFFORTLESSLY & SECURELY
+                </span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-gray-300 text-base sm:text-lg mb-8 leading-relaxed" data-i18n="hero-desc">
+                High-tier manual grinding, resources farming, and account progression handled exclusively by vetted professional players. 100% Manual, Anti-Cheat, and Optional Live Stream Auditing.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="scrollToPricing()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-purple to-brand-pink text-white font-orbitron font-bold text-sm tracking-wide shadow-xl shadow-brand-purple/40 hover:opacity-90 transition text-center" data-i18n="hero-cta">
+                    BOOK SERVICE NOW
+                </button>
+                <a href="https://discord.gg/evskF8r88" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-card border border-brand-border text-white font-orbitron font-bold text-sm tracking-wide hover:border-brand-purple transition flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-discord text-lg text-[#5865F2]"></i>
+                    <span data-i18n="hero-discord">JOIN DISCORD SERVER</span>
+                </a>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-brand-border/40 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-3 rounded-lg bg-brand-card/50 border border-brand-border/50">
+                    <i class="fa-solid fa-shield-halved text-brand-neon text-xl mb-1"></i>
+                    <div class="text-xs font-bold text-white" data-i18n="badge-escrow">Escrow Protection</div>
+                    <div class="text-[10px] text-gray-400" data-i18n="badge-escrow-sub">Funds safe until done</div>
+                </div>
+                <div class="p-3 rounded-lg bg-brand-card/50 border border-brand-border/50">
+                    <i class="fa-solid fa-user-check text-brand-neon text-xl mb-1"></i>
+                    <div class="text-xs font-bold text-white" data-i18n="badge-vetted">Vetted Pro Pilots</div>
+                    <div class="text-[10px] text-gray-400" data-i18n="badge-vetted-sub">Top-tier gamers only</div>
+                </div>
+                <div class="p-3 rounded-lg bg-brand-card/50 border border-brand-border/50">
+                    <i class="fa-solid fa-video text-brand-gold text-xl mb-1"></i>
+                    <div class="text-xs font-bold text-white" data-i18n="badge-golden">Golden ID Stream</div>
+                    <div class="text-[10px] text-gray-400" data-i18n="badge-golden-sub">Watch live piloting</div>
+                </div>
+                <div class="p-3 rounded-lg bg-brand-card/50 border border-brand-border/50">
+                    <i class="fa-solid fa-headset text-brand-neon text-xl mb-1"></i>
+                    <div class="text-xs font-bold text-white" data-i18n="badge-support">24/7 Discord Support</div>
+                    <div class="text-[10px] text-gray-400" data-i18n="badge-support-sub">Instant updates</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SUPPORTED GAMES -->
+    <section id="services" class="py-12 bg-brand-dark/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="font-orbitron text-2xl sm:text-3xl font-bold text-white" data-i18n="games-title">Supported Games</h2>
+                <p class="text-xs sm:text-sm text-gray-400 mt-2" data-i18n="games-desc">Select your target game for specialized pilot services</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div onclick="selectGameAndScroll('Genshin Impact')" class="game-card p-4 rounded-xl bg-brand-card border border-brand-border hover:border-brand-neon cursor-pointer transition text-center group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-neon text-2xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-white text-sm">Genshin Impact</h3>
+                    <span class="inline-block mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" data-i18n="status-active">Active</span>
+                </div>
+
+                <div onclick="selectGameAndScroll('Honkai: Star Rail')" class="game-card p-4 rounded-xl bg-brand-card border border-brand-border hover:border-brand-neon cursor-pointer transition text-center group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-neon text-2xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-train-subway"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-white text-sm">Honkai: Star Rail</h3>
+                    <span class="inline-block mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" data-i18n="status-active">Active</span>
+                </div>
+
+                <div onclick="selectGameAndScroll('Wuthering Waves')" class="game-card p-4 rounded-xl bg-brand-card border border-brand-border hover:border-brand-neon cursor-pointer transition text-center group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-neon text-2xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-white text-sm">Wuthering Waves</h3>
+                    <span class="inline-block mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" data-i18n="status-active">Active</span>
+                </div>
+
+                <div onclick="selectGameAndScroll('Zenless Zone Zero')" class="game-card p-4 rounded-xl bg-brand-card border border-brand-border hover:border-brand-neon cursor-pointer transition text-center group">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-neon text-2xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="font-orbitron font-bold text-white text-sm">Zenless Zone Zero</h3>
+                    <span class="inline-block mt-2 text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" data-i18n="status-active">Active</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING & TIER PACKAGES SECTION -->
+    <section id="pricing" class="py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-orbitron text-3xl font-black text-white" data-i18n="pricing-title">STREAMLINED SERVICE PACKAGES</h2>
+                <p class="text-sm text-gray-400 mt-2" data-i18n="pricing-desc">Choose your preferred duration and upgrade with Golden ID for Live Stream Auditing</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+                
+                <!-- Package 1: 7 Days Grinding ($4.99 USD) -->
+                <div class="neon-border rounded-2xl bg-brand-card p-8 flex flex-col justify-between relative overflow-hidden transition-all hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-brand-neon uppercase tracking-wider bg-brand-purple/20 px-3 py-1 rounded-full border border-brand-purple/30" data-i18n="pkg-7d-tag">Sprint Pass</span>
+                            <span class="text-xs text-gray-400 font-mono">7 DAYS DURATION</span>
+                        </div>
+                        <h3 class="font-orbitron text-2xl font-bold text-white mb-2" data-i18n="pkg-7d-title">7 Days Grinding & Resources</h3>
+                        <p class="text-xs text-gray-300 mb-6 leading-relaxed" data-i18n="pkg-7d-desc">Weekly routine completion, daily resin/stamina burn, event clearance, and specific boss/ascension material farming.</p>
+                        
+                        <div class="flex items-baseline mb-6 border-b border-brand-border/60 pb-6">
+                            <span class="text-4xl font-orbitron font-black text-white">$4.99</span>
+                            <span class="text-xs text-gray-400 font-normal ml-2">USD / 7 Days</span>
+                        </div>
+
+                        <ul class="text-xs text-gray-300 space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-neon text-sm mr-2.5"></i><span data-i18n="feat-7d-1">7 Days Full Daily Commissions & Energy</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-neon text-sm mr-2.5"></i><span data-i18n="feat-7d-2">Active Limited Event Clearances</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-neon text-sm mr-2.5"></i><span data-i18n="feat-7d-3">Custom Farming Notes Support</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-neon text-sm mr-2.5"></i><span data-i18n="feat-7d-4">Standard ID Tracker Access</span></li>
+                            <li class="flex items-center text-gray-400"><i class="fa-solid fa-video text-brand-gold text-sm mr-2.5"></i><span data-i18n="feat-stream-opt">Optional Live Stream (+ $6.99 USD Golden ID)</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal(7, 4.99)" class="w-full py-3.5 rounded-xl bg-brand-purple hover:bg-brand-neon text-white font-orbitron font-bold text-xs tracking-wider transition flex items-center justify-center space-x-2 shadow-lg shadow-brand-purple/30" data-i18n="select-pkg-7">
+                        <span>SELECT 7-DAY PACKAGE</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Package 2: 30 Days Grinding ($19.99 USD) -->
+                <div class="gold-glow rounded-2xl bg-brand-card p-8 flex flex-col justify-between relative overflow-hidden transition-all hover:-translate-y-1">
+                    <div class="absolute -right-12 top-5 bg-brand-gold text-black font-black text-[9px] px-10 py-1 rotate-45 uppercase font-orbitron shadow-md">
+                        BEST VALUE
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-brand-gold uppercase tracking-wider bg-brand-gold/20 px-3 py-1 rounded-full border border-brand-gold/30" data-i18n="pkg-30d-tag">Monthly Elite</span>
+                            <span class="text-xs text-brand-gold font-mono">30 DAYS DURATION</span>
+                        </div>
+                        <h3 class="font-orbitron text-2xl font-bold text-white mb-2" data-i18n="pkg-30d-title">30 Days Full Management</h3>
+                        <p class="text-xs text-gray-300 mb-6 leading-relaxed" data-i18n="pkg-30d-desc">Complete monthly account care, endgame Abyss/Memory resets, maximum Battle Pass exp, and high priority pilot assignment.</p>
+                        
+                        <div class="flex items-baseline mb-6 border-b border-brand-border/60 pb-6">
+                            <span class="text-4xl font-orbitron font-black text-brand-gold">$19.99</span>
+                            <span class="text-xs text-gray-400 font-normal ml-2">USD / Month</span>
+                        </div>
+
+                        <ul class="text-xs text-gray-300 space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold text-sm mr-2.5"></i><span data-i18n="feat-30d-1">30 Days Complete Daily & Energy Grind</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold text-sm mr-2.5"></i><span data-i18n="feat-30d-2">Full Abyss / endgame Clears Included</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold text-sm mr-2.5"></i><span data-i18n="feat-30d-3">Max Battle Pass Level Guarantee</span></li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-gold text-sm mr-2.5"></i><span data-i18n="feat-30d-4">Priority Pro Pilot Assignment</span></li>
+                            <li class="flex items-center text-gray-300"><i class="fa-solid fa-video text-brand-gold text-sm mr-2.5"></i><span data-i18n="feat-stream-opt">Optional Live Stream (+ $6.99 USD Golden ID)</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="openBookingModal(30, 19.99)" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-gold to-yellow-600 hover:opacity-90 text-black font-orbitron font-black text-xs tracking-wider transition flex items-center justify-center space-x-2 shadow-lg shadow-brand-gold/30" data-i18n="select-pkg-30">
+                        <span>SELECT 30-DAY PACKAGE</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Tier Explanations Banner -->
+            <div class="p-6 rounded-2xl bg-gradient-to-r from-brand-card via-purple-950/40 to-brand-card border border-brand-border grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-brand-purple/20 border border-brand-purple/40 flex items-center justify-center text-brand-neon text-lg shrink-0 mt-1">
+                        <i class="fa-solid fa-shield"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-orbitron font-bold text-white text-sm" data-i18n="tier-std-title">Standard Plan (Included)</h4>
+                        <p class="text-xs text-gray-400 mt-1" data-i18n="tier-std-desc">100% manual gameplay, daily completion logs, progress bar tracker access, and escrow safety. Perfect for basic maintenance.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-xl bg-brand-gold/20 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-lg shrink-0 mt-1">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-orbitron font-bold text-brand-gold text-sm" data-i18n="tier-gold-title">Golden ID Upgrade (+ $6.99 USD)</h4>
+                        <p class="text-xs text-gray-400 mt-1" data-i18n="tier-gold-desc">Includes live Discord stream auditing (`#stream-audit`), priority queue, direct pilot messaging, and gold status badge on status tracker.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ID PROGRESS TRACKER SECTION -->
+    <section id="tracker" class="py-16 bg-brand-dark/80 border-t border-b border-brand-border/50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <i class="fa-solid fa-magnifying-glass-chart text-brand-neon text-3xl mb-3"></i>
+                <h2 class="font-orbitron text-2xl font-bold text-white" data-i18n="tracker-title">ID PROGRESS TRACKER</h2>
+                <p class="text-xs text-gray-400 mt-1" data-i18n="tracker-desc">Enter your 10 to 14 digit Game UID to check your pilot's completion percentage</p>
+            </div>
+
+            <div class="bg-brand-card p-6 sm:p-8 rounded-2xl border border-brand-border shadow-2xl">
+                <form id="trackerForm" onsubmit="handleTrack(event)" class="flex flex-col sm:flex-row gap-3">
+                    <input type="text" id="trackUidInput" placeholder="Enter Game UID (e.g. 8123456789)" class="flex-1 bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:border-brand-neon focus:outline-none" required>
+                    <button type="submit" class="px-6 py-3 bg-brand-purple hover:bg-brand-neon text-white font-orbitron font-bold text-xs rounded-xl transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-search"></i>
+                        <span data-i18n="track-btn">CHECK STATUS</span>
+                    </button>
+                </form>
+
+                <div id="trackerResult" class="hidden mt-6 p-6 rounded-xl bg-brand-dark/90 border border-brand-border">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
+                        <div>
+                            <div class="text-xs text-gray-400" data-i18n="track-uid-lbl">Searched UID</div>
+                            <div id="resUid" class="font-orbitron font-bold text-white text-lg">---</div>
+                        </div>
+                        <div class="text-right">
+                            <span id="resPlanBadge" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-brand-purple/20 text-brand-neon border border-brand-purple/40">Standard Plan</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex justify-between text-xs font-semibold mb-1">
+                            <span class="text-gray-300" data-i18n="track-progress-lbl">Order Progress</span>
+                            <span id="resPercent" class="text-brand-neon font-orbitron font-bold">0%</span>
+                        </div>
+                        <div class="w-full h-3 bg-gray-800 rounded-full overflow-hidden">
+                            <div id="resProgressBar" class="h-full bg-gradient-to-r from-brand-purple to-brand-pink transition-all duration-1000" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div id="streamAuditSection" class="hidden pt-4 border-t border-brand-border/60 flex items-center justify-between">
+                        <div class="flex items-center space-x-2 text-brand-gold text-xs font-bold">
+                            <i class="fa-solid fa-crown"></i>
+                            <span data-i18n="golden-id-active">Golden ID Active: Stream Access Unlocked</span>
+                        </div>
+                        <a href="https://discord.gg/evskF8r88" target="_blank" class="px-3 py-1.5 rounded-lg bg-[#5865F2] text-white text-xs font-semibold flex items-center space-x-1 hover:opacity-90">
+                            <i class="fa-brands fa-discord"></i>
+                            <span>#stream-audit</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+        <div class="bg-brand-card border border-brand-border rounded-2xl w-full max-w-2xl p-6 sm:p-8 shadow-2xl relative my-8">
+            <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center space-x-3 mb-6 border-b border-brand-border/60 pb-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-purple/20 border border-brand-purple/40 flex items-center justify-center text-brand-neon font-orbitron font-bold">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div>
+                    <h3 class="font-orbitron font-bold text-xl text-white" data-i18n="modal-title">Complete Your Service Booking</h3>
+                    <p class="text-xs text-gray-400" data-i18n="modal-subtitle">Configure your pilot request & details below</p>
+                </div>
+            </div>
+
+            <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1" data-i18n="lbl-game">Select Game *</label>
+                        <select id="inputGame" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand-neon focus:outline-none" required>
+                            <option value="Genshin Impact">Genshin Impact</option>
+                            <option value="Honkai: Star Rail">Honkai: Star Rail</option>
+                            <option value="Wuthering Waves">Wuthering Waves</option>
+                            <option value="Zenless Zone Zero">Zenless Zone Zero</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1" data-i18n="lbl-server">Game Server *</label>
+                        <select id="inputServer" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand-neon focus:outline-none" required>
+                            <option value="Asia">Asia</option>
+                            <option value="America">America</option>
+                            <option value="Europe">Europe</option>
+                            <option value="TW/HK/MO">TW / HK / MO</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1" data-i18n="lbl-uid">Game UID (10 - 14 Digits) *</label>
+                        <input type="text" id="inputUid" placeholder="e.g. 8123456789" pattern="^[0-9]{8,14}$" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand-neon focus:outline-none" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1" data-i18n="lbl-duration">Package Duration *</label>
+                        <select id="inputDuration" onchange="recalculateTotal()" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand-neon focus:outline-none" required>
+                            <option value="7">7 Days Grinding ($4.99 USD)</option>
+                            <option value="30">30 Days Full Care ($19.99 USD)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <label class="block text-xs font-semibold text-gray-300 mb-2" data-i18n="lbl-tier">Choose Plan Tier *</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <label class="cursor-pointer border border-brand-border bg-brand-dark p-3 rounded-xl flex items-center space-x-3 hover:border-brand-purple transition">
+                            <input type="radio" name="planTier" value="standard" checked onchange="recalculateTotal()" class="accent-brand-purple">
+                            <div>
+                                <div class="text-xs font-bold text-white" data-i18n="opt-tier-std">Standard Plan (+$0 USD)</div>
+                                <div class="text-[10px] text-gray-400" data-i18n="opt-tier-std-sub">Manual piloting + status tracker</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer border border-brand-gold/50 bg-brand-dark p-3 rounded-xl flex items-center space-x-3 hover:border-brand-gold transition">
+                            <input type="radio" name="planTier" value="golden" onchange="recalculateTotal()" class="accent-brand-gold">
+                            <div>
+                                <div class="text-xs font-bold text-brand-gold" data-i18n="opt-tier-gold">Golden ID (+ $6.99 USD)</div>
+                                <div class="text-[10px] text-gray-400" data-i18n="opt-tier-gold-sub">Includes Live Discord Stream Audit</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1" data-i18n="lbl-discord">Discord Username *</label>
+                        <input type="text" id="inputDiscord" placeholder="username#0000" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand-neon focus:outline-none" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1" data-i18n="lbl-email">Email Address *</label>
+                        <input type="email" id="inputEmail" placeholder="your@email.com" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand-neon focus:outline-none" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-1" data-i18n="lbl-phone">Phone Number *</label>
+                        <input type="text" id="inputPhone" placeholder="+60123456789" class="w-full bg-brand-dark border border-brand-border rounded-xl px-3 py-2.5 text-xs text-white focus:border-brand-neon focus:outline-none" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1" data-i18n="lbl-notes">Farming Notes & Special Instructions</label>
+                    <textarea id="inputNotes" rows="3" placeholder="E.g. Prioritize farming Raiden ascension boss materials, spend daily resin on Emblem domain..." class="w-full bg-brand-dark border border-brand-border rounded-xl p-3 text-xs text-white focus:border-brand-neon focus:outline-none"></textarea>
+                </div>
+
+                <div class="bg-brand-dark p-4 rounded-xl border border-brand-border/80 flex items-center justify-between mt-4">
+                    <div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-wider" data-i18n="lbl-total">Total Price</div>
+                        <div id="modalTotalPrice" class="text-2xl font-orbitron font-black text-brand-neon">$4.99 USD</div>
+                    </div>
+                    <button type="submit" id="submitOrderBtn" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-purple to-brand-pink hover:opacity-90 text-white font-orbitron font-bold text-xs tracking-wider transition shadow-lg shadow-brand-purple/40 flex items-center space-x-2">
+                        <i class="fa-solid fa-lock text-xs"></i>
+                        <span data-i18n="btn-confirm-checkout">PROCEED TO CHECKOUT</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let isVerified = false;
+
+        function passVerification() {
+            isVerified = true;
+            document.getElementById('checkboxIcon').style.borderColor = '#a855f7';
+            document.getElementById('checkboxIcon').style.background = 'rgba(168, 85, 247, 0.2)';
+            document.getElementById('checkMark').style.opacity = '1';
+            
+            const verifyBtn = document.getElementById('verifyBtn');
+            verifyBtn.disabled = false;
+            verifyBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            verifyBtn.classList.add('hover:opacity-90', 'cursor-pointer', 'shadow-brand-purple/40');
+
+            setTimeout(() => {
+                document.getElementById('botProtectionGate').style.opacity = '0';
+                document.getElementById('botProtectionGate').style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    document.getElementById('botProtectionGate').remove();
+                }, 500);
+            }, 300);
+        }
+
+        const translations = {
+            en: {
+                "nav-sub": "Premier Boosting Agency",
+                "nav-services": "Services",
+                "nav-pricing": "Packages",
+                "nav-tracker": "ID Tracker",
+                "nav-vouches": "Vouches",
+                "nav-faq": "FAQ",
+                "join-discord": "Join Discord",
+                "hero-badge": "Verified Pro Pilots & Escrow Protection Active",
+                "hero-title": "EFFORTLESSLY & SECURELY",
+                "hero-desc": "High-tier manual grinding, resources farming, and account progression handled exclusively by vetted professional players. 100% Manual, Anti-Cheat, and Optional Live Stream Auditing.",
+                "hero-cta": "BOOK SERVICE NOW",
+                "hero-discord": "JOIN DISCORD SERVER",
+                "badge-escrow": "Escrow Protection",
+                "badge-escrow-sub": "Funds safe until done",
+                "badge-vetted": "Vetted Pro Pilots",
+                "badge-vetted-sub": "Top-tier gamers only",
+                "badge-golden": "Golden ID Stream",
+                "badge-golden-sub": "Watch live piloting",
+                "badge-support": "24/7 Discord Support",
+                "badge-support-sub": "Instant updates",
+                "games-title": "Supported Games",
+                "games-desc": "Select your target game for specialized pilot services",
+                "status-active": "Active",
+                "pricing-title": "STREAMLINED SERVICE PACKAGES",
+                "pricing-desc": "Choose your preferred duration and upgrade with Golden ID for Live Stream Auditing",
+                "pkg-7d-tag": "Sprint Pass",
+                "pkg-7d-title": "7 Days Grinding & Resources",
+                "pkg-7d-desc": "Weekly routine completion, daily resin/stamina burn, event clearance, and specific boss/ascension material farming.",
+                "feat-7d-1": "7 Days Full Daily Commissions & Energy",
+                "feat-7d-2": "Active Limited Event Clearances",
+                "feat-7d-3": "Custom Farming Notes Support",
+                "feat-7d-4": "Standard ID Tracker Access",
+                "feat-stream-opt": "Optional Live Stream (+ $6.99 USD Golden ID)",
+                "select-pkg-7": "SELECT 7-DAY PACKAGE",
+                "pkg-30d-tag": "Monthly Elite",
+                "pkg-30d-title": "30 Days Full Management",
+                "pkg-30d-desc": "Complete monthly account care, endgame Abyss/Memory resets, maximum Battle Pass exp, and high priority pilot assignment.",
+                "feat-30d-1": "30 Days Complete Daily & Energy Grind",
+                "feat-30d-2": "Full Abyss / endgame Clears Included",
+                "feat-30d-3": "Max Battle Pass Level Guarantee",
+                "feat-30d-4": "Priority Pro Pilot Assignment",
+                "select-pkg-30": "SELECT 30-DAY PACKAGE",
+                "tier-std-title": "Standard Plan (Included)",
+                "tier-std-desc": "100% manual gameplay, daily completion logs, progress bar tracker access, and escrow safety. Perfect for basic maintenance.",
+                "tier-gold-title": "Golden ID Upgrade (+ $6.99 USD)",
+                "tier-gold-desc": "Includes live Discord stream auditing (#stream-audit), priority queue, direct pilot messaging, and gold status badge on status tracker.",
+                "tracker-title": "ID PROGRESS TRACKER",
+                "tracker-desc": "Enter your 10 to 14 digit Game UID to check your pilot's completion percentage",
+                "track-btn": "CHECK STATUS",
+                "golden-id-active": "Golden ID Active: Stream Access Unlocked",
+                "modal-title": "Complete Your Service Booking",
+                "modal-subtitle": "Configure your pilot request & details below",
+                "lbl-game": "Select Game *",
+                "lbl-server": "Game Server *",
+                "lbl-uid": "Game UID (10 - 14 Digits) *",
+                "lbl-duration": "Package Duration *",
+                "lbl-tier": "Choose Plan Tier *",
+                "opt-tier-std": "Standard Plan (+$0 USD)",
+                "opt-tier-gold": "Golden ID (+ $6.99 USD)",
+                "lbl-discord": "Discord Username *",
+                "lbl-email": "Email Address *",
+                "lbl-phone": "Phone Number *",
+                "lbl-notes": "Farming Notes & Special Instructions",
+                "lbl-total": "Total Price",
+                "btn-confirm-checkout": "PROCEED TO CHECKOUT"
+            },
+            my: {
+                "nav-sub": "Agensi Boosting Utama",
+                "nav-services": "Perkhidmatan",
+                "nav-pricing": "Pakej",
+                "nav-tracker": "Penjejak ID",
+                "nav-vouches": "Testimoni",
+                "nav-faq": "Soalan Lazim",
+                "join-discord": "Sertai Discord",
+                "hero-badge": "Pilot Profesional Terbukti & Perlindungan Escrow Aktif",
+                "hero-title": "DENGAN MUDAH & SELAMAT",
+                "hero-desc": "Grinding manual tahap tinggi, penternakan bahan, dan kemajuan akaun dikendalikan khas oleh pemain profesional berpengalaman.",
+                "hero-cta": "TEMPAH PERKHIDMATAN",
+                "hero-discord": "SERTAI SERVER DISCORD",
+                "badge-escrow": "Perlindungan Escrow",
+                "badge-escrow-sub": "Dana selamat sehingga selesai",
+                "badge-vetted": "Pilot Terbukti",
+                "badge-vetted-sub": "Pemain tahap tertinggi sahaja",
+                "badge-golden": "Strim Golden ID",
+                "badge-golden-sub": "Tonton pilot main secara langsung",
+                "badge-support": "Sokongan Discord 24/7",
+                "badge-support-sub": "Kemaskini serta-merta",
+                "games-title": "Permainan Disokong",
+                "games-desc": "Pilih permainan anda untuk perkhidmatan pilot khusus",
+                "status-active": "Aktif",
+                "pricing-title": "PAKEJ PERKHIDMATAN RINGKAS",
+                "pricing-desc": "Pilih tempoh pilihan anda dan naik taraf ke Golden ID untuk Strim Langsung",
+                "pkg-7d-tag": "Pas Sprint",
+                "pkg-7d-title": "7 Hari Grinding & Sumber",
+                "pkg-7d-desc": "Penyelesaian rutin mingguan, penggunaan tenaga harian, penyelesaian acara, dan penternakan bahan bos/watak.",
+                "feat-7d-1": "7 Hari Komisen Harian & Tenaga Penuh",
+                "feat-7d-2": "Penyelesaian Acara Terhad Aktif",
+                "feat-7d-3": "Sokongan Nota Farming Khusus",
+                "feat-7d-4": "Akses Penjejak ID Standard",
+                "feat-stream-opt": "Pilihan Strim Langsung (+ $6.99 USD Golden ID)",
+                "select-pkg-7": "PILIH PAKEJ 7 HARI",
+                "pkg-30d-tag": "Elit Bulanan",
+                "pkg-30d-title": "30 Hari Pengurusan Penuh",
+                "pkg-30d-desc": "Pengurusan akaun bulanan lengkap, reset Abyss/Memory, jaminan Battle Pass maksima, dan keutamaan pilot pro.",
+                "feat-30d-1": "30 Hari Grinding Harian & Tenaga Lengkap",
+                "feat-30d-2": "Termasuk Penyelesaian Abyss / Endgame",
+                "feat-30d-3": "Jaminan Tahap Maksima Battle Pass",
+                "feat-30d-4": "Tugasan Pilot Pro Keutamaan",
+                "select-pkg-30": "PILIH PAKEJ 30 HARI",
+                "tier-std-title": "Pelan Standard (Termasuk)",
+                "tier-std-desc": "100% permainan manual, log kemajuan harian, akses bar kemajuan, dan keselamatan escrow.",
+                "tier-gold-title": "Naik Taraf Golden ID (+ $6.99 USD)",
+                "tier-gold-desc": "Termasuk audit strim langsung Discord (#stream-audit), giliran keutamaan, mesej terus pilot, dan lencana status emas.",
+                "tracker-title": "PENJEJAK KEMAJUAN ID",
+                "tracker-desc": "Masukkan 10 hingga 14 digit Game UID anda untuk menyemak peratusan penyelesaian",
+                "track-btn": "SEMAK STATUS",
+                "golden-id-active": "Golden ID Aktif: Akses Strim Dibuka",
+                "modal-title": "Lengkapkan Tempahan Perkhidmatan",
+                "modal-subtitle": "Konfigurasikan permintaan pilot & butiran anda di bawah",
+                "lbl-game": "Pilih Permainan *",
+                "lbl-server": "Server Permainan *",
+                "lbl-uid": "Game UID (10 - 14 Digit) *",
+                "lbl-duration": "Tempoh Pakej *",
+                "lbl-tier": "Pilih Pelan Tier *",
+                "opt-tier-std": "Pelan Standard (+$0 USD)",
+                "opt-tier-gold": "Golden ID (+ $6.99 USD)",
+                "lbl-discord": "Nama Pengguna Discord *",
+                "lbl-email": "Alamat Emel *",
+                "lbl-phone": "Nombor Telefon *",
+                "lbl-notes": "Nota Farming & Arahan Khas",
+                "lbl-total": "Jumlah Harga",
+                "btn-confirm-checkout": "TERUSKAN KE PEMBAYARAN"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'my' : 'en';
+            document.getElementById('langLabel').innerText = currentLang.toUpperCase();
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerText = translations[currentLang][key];
+                }
+            });
+        }
+
+        function scrollToPricing() {
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectGameAndScroll(gameName) {
+            document.getElementById('inputGame').value = gameName;
+            openBookingModal(7, 4.99);
+        }
+
+        function openBookingModal(durationDays = 7, basePrice = 4.99) {
+            document.getElementById('inputDuration').value = durationDays.toString();
+            recalculateTotal();
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function recalculateTotal() {
+            const duration = parseInt(document.getElementById('inputDuration').value) || 7;
+            const basePrice = duration === 30 ? 19.99 : 4.99;
+            const isGolden = document.querySelector('input[name="planTier"]:checked').value === 'golden';
+            const total = (basePrice + (isGolden ? 6.99 : 0)).toFixed(2);
+            
+            document.getElementById('modalTotalPrice').innerText = `$${total} USD`;
+        }
+
+        function handleTrack(event) {
+            event.preventDefault();
+            const uid = document.getElementById('trackUidInput').value.trim();
+            if (!uid) return;
+
+            const resultBox = document.getElementById('trackerResult');
+            const resUid = document.getElementById('resUid');
+            const resPercent = document.getElementById('resPercent');
+            const resProgressBar = document.getElementById('resProgressBar');
+            const streamAuditSection = document.getElementById('streamAuditSection');
+            const resPlanBadge = document.getElementById('resPlanBadge');
+
+            resUid.innerText = uid;
+            resultBox.classList.remove('hidden');
+
+            const pseudoProgress = Math.min(95, Math.max(15, (parseInt(uid.slice(-2)) || 45)));
+            const isGoldenSim = parseInt(uid.slice(-1)) % 2 === 0;
+
+            if (isGoldenSim) {
+                resPlanBadge.innerText = "GOLDEN ID PLAN";
+                resPlanBadge.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-brand-gold/20 text-brand-gold border border-brand-gold/40";
+                streamAuditSection.classList.remove('hidden');
+            } else {
+                resPlanBadge.innerText = "STANDARD PLAN";
+                resPlanBadge.className = "px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-brand-purple/20 text-brand-neon border border-brand-purple/40";
+                streamAuditSection.classList.add('hidden');
+            }
+
+            resPercent.innerText = `${pseudoProgress}%`;
+            setTimeout(() => {
+                resProgressBar.style.width = `${pseudoProgress}%`;
+            }, 100);
+        }
+
+        async function handleCheckoutSubmit(event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submitOrderBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>PROCESSING...</span>`;
+
+            const durationDays = parseInt(document.getElementById('inputDuration').value);
+            const basePrice = durationDays === 30 ? 19.99 : 4.99;
+            const tierVal = document.querySelector('input[name="planTier"]:checked').value;
+            const finalTotal = (basePrice + (tierVal === 'golden' ? 6.99 : 0)).toFixed(2);
+
+            const payload = {
+                game: document.getElementById('inputGame').value,
+                server: document.getElementById('inputServer').value,
+                uid: document.getElementById('inputUid').value.trim(),
+                duration_days: durationDays,
+                tier: tierVal,
+                discord_id: document.getElementById('inputDiscord').value.trim(),
+                email: document.getElementById('inputEmail').value.trim(),
+                phone: document.getElementById('inputPhone').value.trim(),
+                notes: document.getElementById('inputNotes').value.trim(),
+                total_amount: finalTotal,
+                currency: "USD"
+            };
+
+            try {
+                const response = await fetch('http://localhost:5000/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    alert(currentLang === 'en' ? "Order placed successfully!" : "Pesanan berjaya dihantar!");
+                } else {
+                    alert(currentLang === 'en' ? `Order Configured! Total: $${finalTotal} USD` : `Pesanan Dikonfigurasi! Jumlah: $${finalTotal} USD`);
+                }
+            } catch (err) {
+                alert(currentLang === 'en' ? `[DEMO MODE] Order Received! Total: $${finalTotal} USD` : `[MOD DEMO] Pesanan Diterima! Jumlah: $${finalTotal} USD`);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-lock text-xs"></i> <span>${translations[currentLang]["btn-confirm-checkout"]}</span>`;
+                closeBookingModal();
+            }
+        }
+    </script>
+</body>
+</html>
